@@ -3,6 +3,7 @@ import { Httpx } from 'https://jslib.k6.io/httpx/0.0.3/index.js';
 
 let session = new Httpx({
   baseURL: `${__ENV.API_BASE}api`,
+  // baseURL: `${API_BASE}api`,
   headers: { 'Content-Type': 'application/json' },
 });
 
@@ -37,6 +38,7 @@ export default () => {
       "Cria o projeto com sucesso": (r) => r.status === 201,
     });
 
+    console.log(titan.content);
     check(titan, {
       "O pacote Django continua com a versão especificada": (r) => {
         const data = responseToJson(r);
